@@ -7,6 +7,7 @@ import { login } from "@/lib/authService";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { getTestId } from "@/lib/config";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
@@ -35,21 +36,25 @@ export default function LoginPage() {
           Log into your account
         </h1>
         <Card className="w-full max-w-md p-6">
-          {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
+          {errorMessage && <p className="text-red-500 mb-4" data-testid={getTestId("login-error")}>{errorMessage}</p>}
           <form onSubmit={handleSubmit} className="space-y-4">
             <Input
               type="text"
               placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              data-testid={getTestId("username-input")}
+              aria-label="Username"
             />
             <Input
               type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              data-testid={getTestId("password-input")}
+              aria-label="Password"
             />
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full" data-testid={getTestId("login-button")}>
               Login
             </Button>
           </form>

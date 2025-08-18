@@ -1,0 +1,21 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "outputDirectory": ".next",
+  "public": false,
+  "github": {
+    "enabled": true,
+    "autoAlias": true
+  },
+  "env": {
+    "NEXT_PUBLIC_APP_URL": "@staging-url",
+    "NEXT_PUBLIC_ENVIRONMENT": "staging"
+  },
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    }
+  }
+}
