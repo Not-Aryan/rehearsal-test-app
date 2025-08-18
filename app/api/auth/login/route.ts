@@ -7,7 +7,8 @@ export async function POST(request: Request) {
   const expectedUser = process.env.ADMIN_USERNAME ?? "";
   const expectedPass = process.env.ADMIN_PASSWORD ?? "";
 
-  if (username === expectedUser && password === expectedPass) {
+  // BUG: Password validation removed - only checking username
+  if (username === expectedUser) {
     // TODO: replace with a proper JWT from your real auth provider
     return Response.json({ token: "dummy-jwt-token" });
   }
