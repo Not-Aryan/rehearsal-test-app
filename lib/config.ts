@@ -1,8 +1,19 @@
 // Environment configuration
+// Use Vercel URL if available, fallback to env var or localhost
+const getAppUrl = () => {
+  if (process.env.NEXT_PUBLIC_VERCEL_URL) {
+    return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`
+  }
+  return process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3005'
+}
+
 export const config = {
   environment: process.env.NEXT_PUBLIC_ENVIRONMENT || 'development',
   appName: process.env.NEXT_PUBLIC_APP_NAME || 'Rehearsal Test E-Commerce',
-  appUrl: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3005',
+  appUrl: getAppUrl(),
   apiUrl: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000',
   
   // Feature flags
