@@ -39,13 +39,13 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
           Out of Stock
         </div>
       )}
-      
+
       {/* Product image + title */}
       <div className="flex flex-col items-center flex-grow">
         <img
           src={item.imageURL}
           alt={item.productDisplayName}
-          className={`w-full object-cover ${isOutOfStock ? 'opacity-50' : ''}`}
+          className={`w-full object-cover ${isOutOfStock ? "opacity-50" : ""}`}
         />
         <div className="w-full m-4">
           <h3 className="font-medium text-sm text-stone-800 line-clamp-2">
@@ -120,3 +120,4 @@ export default ItemCard;
 // Test with api_endpoint field
 // Test with Modal env var for API URL
 // Test e2e with fixed UUID handling
+// Test with Vercel env
