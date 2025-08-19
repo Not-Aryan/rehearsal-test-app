@@ -111,3 +111,4 @@ export default ItemCard;
 // Test Modal SDK integration
 // Test Modal positional arg
 // Test Modal with updated payload
+// Test Modal with typed payload
