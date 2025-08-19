@@ -35,7 +35,7 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
     <div className="flex flex-col h-full cursor-pointer bg-stone-100 p-4 rounded-sm relative">
       {/* Out of Stock Badge */}
       {isOutOfStock && (
-        <div className="absolute top-6 right-6 bg-red-600 text-white px-2 py-1 rounded-md text-xs font-semibold z-10">
+        <div className="absolute top-6 right-6 bg-red-500 text-white px-3 py-1 rounded-md text-xs font-semibold z-10 shadow-lg">
           Out of Stock
         </div>
       )}
