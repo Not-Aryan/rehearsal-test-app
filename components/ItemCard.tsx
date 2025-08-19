@@ -115,3 +115,4 @@ export default ItemCard;
 // Analyze Modal integration issue
 // Test Modal with request kwarg
 // Test Modal with Python dict handling
+// Test Modal after Python deployment
