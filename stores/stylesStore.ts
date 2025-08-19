@@ -15,6 +15,7 @@ export interface StyleItem {
   productDisplayName: string;
   imageURL: string;
   priceUSD?: number;
+  stock?: number; // Add stock field
 }
 
 interface StylesState {
@@ -32,7 +33,13 @@ export const useStylesStore = create<StylesState>((set) => ({
     set({ loading: true, error: null });
     try {
       const styles = await fetchAllStyles();
-      set({ data: styles as StyleItem[], loading: false });
+      // Add random stock levels to simulate out of stock items
+      const stylesWithStock = (styles as StyleItem[]).map((style, index) => ({
+        ...style,
+        // Make every 5th item out of stock for testing
+        stock: index % 5 === 0 ? 0 : Math.floor(Math.random() * 50) + 1
+      }));
+      set({ data: stylesWithStock, loading: false });
     } catch (e: unknown) {
       const error = e as Error;
       set({ error: error.message ?? "Failed to load styles", loading: false });

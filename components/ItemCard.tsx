@@ -11,6 +11,7 @@ interface ItemCardProps {
     baseColour: string;
     priceUSD?: number;
     imageURL: string;
+    stock?: number; // Add stock field
   };
 }
 
@@ -27,14 +28,24 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
     addItem(item.id);
   };
 
+  // Check if item is out of stock
+  const isOutOfStock = item.stock === 0;
+
   return (
-    <div className="flex flex-col h-full cursor-pointer bg-stone-100 p-4 rounded-sm">
+    <div className="flex flex-col h-full cursor-pointer bg-stone-100 p-4 rounded-sm relative">
+      {/* Out of Stock Badge */}
+      {isOutOfStock && (
+        <div className="absolute top-6 right-6 bg-red-600 text-white px-2 py-1 rounded-md text-xs font-semibold z-10">
+          Out of Stock
+        </div>
+      )}
+      
       {/* Product image + title */}
       <div className="flex flex-col items-center flex-grow">
         <img
           src={item.imageURL}
           alt={item.productDisplayName}
-          className="w-full object-cover"
+          className={`w-full object-cover ${isOutOfStock ? 'opacity-50' : ''}`}
         />
         <div className="w-full m-4">
           <h3 className="font-medium text-sm text-stone-800 line-clamp-2">
@@ -47,7 +58,9 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
         <span className="text-sm font-medium text-stone-900">
           {`$${item.priceUSD ?? "N/A"}`}
         </span>
-        {quantity > 0 ? (
+        {isOutOfStock ? (
+          <span className="text-xs text-red-600 font-medium">Out of Stock</span>
+        ) : quantity > 0 ? (
           <div className="flex items-center md:gap-1">
             <div
               onClick={(e) => {
