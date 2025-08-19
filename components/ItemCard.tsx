@@ -119,3 +119,4 @@ export default ItemCard;
 // Test with correct ngrok URLs
 // Test with api_endpoint field
 // Test with Modal env var for API URL
+// Test e2e with fixed UUID handling
