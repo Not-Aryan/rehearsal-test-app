@@ -135,3 +135,4 @@ export default ItemCard;
 // Final test - kwargs fix deployed
 // SUCCESS - Testing full working pipeline!
 // FINAL TEST - Modal redeployed with *args, **kwargs
+// Test with fixed dict parameter handling
