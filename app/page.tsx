@@ -5,6 +5,7 @@ import { useStylesStore } from "@/stores/stylesStore";
 import StyleCard from "@/components/ItemCard";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import { setupMockData } from "@/lib/mockData";
 
 function HomeCallout({
   title,
@@ -29,6 +30,7 @@ function HomeCallout({
 export default function HomePage() {
   const { data, loading, fetchStyles } = useStylesStore();
   useEffect(() => {
+    setupMockData(); // Set up demo data for express checkout
     fetchStyles();
   }, [fetchStyles]);
   const justIn = data.slice(0, 4);

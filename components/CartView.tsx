@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import clsx from "clsx";
 import { QtSelect } from "@/components/ui/qt-select";
 import { Trash } from "lucide-react";
+import ExpressCheckout from "@/components/ExpressCheckout";
 
 interface ItemData {
   id: number;
@@ -304,6 +305,7 @@ export default function CartView() {
         </div>
 
         <div className="lg:w-1/3">
+          <ExpressCheckout />
           <PaymentMethod onCheckout={handleCheckout} />
         </div>
       </div>
