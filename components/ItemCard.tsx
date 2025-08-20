@@ -132,3 +132,4 @@ export default ItemCard;
 // Test comment to trigger PR webhook - Tue Aug 19 20:29:06 PDT 2025
 // Another test comment - testing fixed Modal function
 // Testing Modal invocation fix with spawn method
+// Final test - kwargs fix deployed
