@@ -28,7 +28,7 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
     addItem(item.id);
   };
 
-  // Check stock levels
+  // Check stock levels for inventory status
   const isOutOfStock = item.stock === 0;
   const isLowStock = !isOutOfStock && item.stock !== undefined && item.stock > 0 && item.stock <= 3;
 
