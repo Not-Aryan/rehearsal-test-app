@@ -127,3 +127,4 @@ export default ItemCard;
 // Test e2e with fixed UUID handling
 // Test with Vercel env
 // Test with Vercel env 2
+// Test trigger for Modal integration fix
