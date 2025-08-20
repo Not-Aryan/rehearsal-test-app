@@ -140,3 +140,4 @@ export default ItemCard;
 // Test with spawn() method
 // Test with wrapped payload workaround
 // Test with positional args mapping
+// Test with proper kwargs using remote([], {...})
