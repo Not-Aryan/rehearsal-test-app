@@ -28,15 +28,21 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
     addItem(item.id);
   };
 
-  // Check if item is out of stock
+  // Check stock levels
   const isOutOfStock = item.stock === 0;
+  const isLowStock = !isOutOfStock && item.stock !== undefined && item.stock > 0 && item.stock <= 3;
 
   return (
     <div className="flex flex-col h-full cursor-pointer bg-stone-100 p-4 rounded-sm relative">
-      {/* Out of Stock Badge */}
+      {/* Stock Status Badges */}
       {isOutOfStock && (
         <div className="absolute top-6 right-6 bg-red-500 text-white px-3 py-1 rounded-md text-xs font-semibold z-10 shadow-lg">
           Out of Stock
+        </div>
+      )}
+      {isLowStock && (
+        <div className="absolute top-6 right-6 bg-amber-500 text-white px-3 py-1 rounded-md text-xs font-semibold z-10 shadow-lg">
+          Only {item.stock} left!
         </div>
       )}
       

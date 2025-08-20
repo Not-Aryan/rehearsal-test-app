@@ -33,12 +33,21 @@ export const useStylesStore = create<StylesState>((set) => ({
     set({ loading: true, error: null });
     try {
       const styles = await fetchAllStyles();
-      // Add random stock levels to simulate out of stock items
-      const stylesWithStock = (styles as StyleItem[]).map((style, index) => ({
-        ...style,
-        // Make every 5th item out of stock for testing
-        stock: index % 5 === 0 ? 0 : Math.floor(Math.random() * 50) + 1
-      }));
+      // Add random stock levels to simulate various stock situations
+      const stylesWithStock = (styles as StyleItem[]).map((style, index) => {
+        let stock: number;
+        if (index % 5 === 0) {
+          // Every 5th item is out of stock
+          stock = 0;
+        } else if (index % 7 === 0) {
+          // Every 7th item has low stock (1-3 items)
+          stock = Math.floor(Math.random() * 3) + 1;
+        } else {
+          // Regular stock levels
+          stock = Math.floor(Math.random() * 50) + 4;
+        }
+        return { ...style, stock };
+      });
       set({ data: stylesWithStock, loading: false });
     } catch (e: unknown) {
       const error = e as Error;
