@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/stores/cartStore";
 import { useRouter } from "next/navigation";
 import { Zap } from "lucide-react";
+import { fetchStyleById } from "@/lib/styleService";
 
 interface SavedPayment {
   id: string;
@@ -13,10 +14,36 @@ interface SavedPayment {
   token: string;
 }
 
+interface ItemData {
+  id: number;
+  productDisplayName: string;
+  priceUSD?: number;
+  imageURL: string;
+}
+
 export default function ExpressCheckout() {
   const [processing, setProcessing] = useState(false);
-  const { items, clearCart } = useCartStore();
+  const [productData, setProductData] = useState<Record<number, ItemData>>({});
+  const { items, clear } = useCartStore();
   const router = useRouter();
+
+  // Load product data for cart items
+  useEffect(() => {
+    const loadProductData = async () => {
+      const data: Record<number, ItemData> = {};
+      for (const item of items) {
+        const product = await fetchStyleById(item.id) as ItemData;
+        if (product) {
+          data[item.id] = product;
+        }
+      }
+      setProductData(data);
+    };
+    if (items.length > 0) {
+      loadProductData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items]);
 
   // BUG 1: Stores sensitive payment token in localStorage (XSS vulnerability)
   const getSavedPayment = (): SavedPayment | null => {
@@ -31,8 +58,9 @@ export default function ExpressCheckout() {
   const calculateTotal = () => {
     let total = 0;
     items.forEach(item => {
+      const price = productData[item.id]?.priceUSD || 0;
       // This will cause floating point errors like $89.97000000000001
-      total += parseFloat(item.priceUSD || '0') * item.quantity;
+      total += price * item.quantity;
     });
     return total; // Should be: parseFloat(total.toFixed(2))
   };
@@ -56,12 +84,20 @@ export default function ExpressCheckout() {
       
       const total = calculateTotal();
       
+      // Prepare items with product data
+      const itemsWithData = items.map(item => ({
+        id: item.id,
+        quantity: item.quantity,
+        productDisplayName: productData[item.id]?.productDisplayName || 'Unknown',
+        priceUSD: productData[item.id]?.priceUSD || 0
+      }));
+
       // Simulate payment processing
       const response = await fetch('/api/express-checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          items,
+          items: itemsWithData,
           total,
           paymentToken: savedPayment.token, // Sending token directly
           shipping: { street, city, state, zip }
@@ -77,10 +113,10 @@ export default function ExpressCheckout() {
 
       // BUG 7: Clears cart before confirming inventory availability
       // Should verify stock BEFORE charging and clearing cart
-      clearCart();
+      clear();
       
       router.push('/order-success');
-    } catch (error) {
+    } catch {
       // BUG 8: Doesn't properly handle partial failures
       // If payment went through but inventory check failed, no refund!
       alert("Checkout failed");

@@ -12,7 +12,7 @@ async function chargeCard(token: string, amount: number) {
 }
 
 // Mock inventory check
-async function checkInventory(items: any[]) {
+async function checkInventory(items: Array<{id: number; quantity: number; priceUSD?: number; productDisplayName?: string}>) {
   // Simulate inventory check
   await new Promise(resolve => setTimeout(resolve, 500));
   
@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
       order 
     });
     
-  } catch (error) {
+  } catch {
     // BUG: Generic error doesn't distinguish between payment failures
     // and other errors. Payment might have gone through!
     return NextResponse.json(
