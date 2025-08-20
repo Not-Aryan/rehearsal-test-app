@@ -138,3 +138,4 @@ export default ItemCard;
 // Test with fixed dict parameter handling
 // Test with *args, **kwargs handler
 // Test with spawn() method
+// Test with wrapped payload workaround
