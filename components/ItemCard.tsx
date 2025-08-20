@@ -139,3 +139,4 @@ export default ItemCard;
 // Test with *args, **kwargs handler
 // Test with spawn() method
 // Test with wrapped payload workaround
+// Test with positional args mapping
