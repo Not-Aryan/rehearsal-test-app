@@ -46,6 +46,7 @@ export default function ExpressCheckout() {
   }, [items]);
 
   // BUG 1: Stores sensitive payment token in localStorage (XSS vulnerability)
+  // This is a critical security issue that should be caught by tests
   const getSavedPayment = (): SavedPayment | null => {
     const saved = localStorage.getItem('paymentToken');
     if (saved) {
