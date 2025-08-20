@@ -163,6 +163,6 @@ export default function ExpressCheckout() {
   );
 }
 
-// Version 3: After fixing duplicate status updates in test reporting
-// Tests should now properly fail when bugs are detected by ClaudeRunner
-// Added comment to trigger PR bot with our complete fix
+// Version 4: Refined ClaudeRunner to focus on specific test objectives
+// Tests should now pass/fail based on their specific verifications
+// Not every observed issue should cause test failure
