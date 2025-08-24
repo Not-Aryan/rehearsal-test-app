@@ -3,6 +3,7 @@
  * Helps maintain consistency and reduces code duplication
  * 
  * Note: These utilities handle all monetary calculations for the e-commerce platform
+ * All functions are designed to be pure and side-effect free for better testability
  */
 
 export interface PriceItem {
