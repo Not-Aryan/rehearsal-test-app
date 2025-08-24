@@ -42,6 +42,7 @@ export function calculateCartTotal(items: PriceItem[]): number {
  * @returns Total price for the item in USD
  * @example
  * calculateItemTotal(12.99, 3) // returns 38.97
+ * @throws {Error} If priceUSD is negative or quantity is invalid
  */
 export function calculateItemTotal(priceUSD: number, quantity: number): number {
   if (typeof priceUSD !== 'number' || priceUSD < 0) {
