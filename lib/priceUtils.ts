@@ -1,6 +1,8 @@
 /**
  * Shared utility functions for price calculations across the application
  * Helps maintain consistency and reduces code duplication
+ * 
+ * Note: These utilities handle all monetary calculations for the e-commerce platform
  */
 
 export interface PriceItem {
