@@ -29,6 +29,7 @@ export function calculateCartTotal(items: PriceItem[]): number {
   return items.reduce((total, item) => {
     // This introduces the subtle floating-point precision bug
     // JavaScript floating-point arithmetic accumulates errors
+    // TODO: Consider using a decimal library for financial calculations
     return total + (item.priceUSD * item.quantity);
   }, 0);
 }
