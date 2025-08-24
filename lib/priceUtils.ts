@@ -7,8 +7,8 @@
  */
 
 export interface PriceItem {
-  priceUSD: number;
-  quantity: number;
+  priceUSD: number;  // Price in US dollars
+  quantity: number;  // Number of items
 }
 
 /**
