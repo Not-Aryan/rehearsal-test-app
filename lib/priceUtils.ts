@@ -20,6 +20,11 @@ export function calculateCartTotal(items: PriceItem[]): number {
     throw new Error('Items must be an array');
   }
   
+  // Handle empty cart case for performance
+  if (items.length === 0) {
+    return 0;
+  }
+  
   return items.reduce((total, item) => {
     // This introduces the subtle floating-point precision bug
     // JavaScript floating-point arithmetic accumulates errors
@@ -54,6 +59,11 @@ export function calculateItemTotal(priceUSD: number, quantity: number): number {
 export function formatPrice(amount: number): string {
   if (typeof amount !== 'number' || isNaN(amount)) {
     throw new Error('Amount must be a valid number');
+  }
+  
+  // Handle edge cases for very large or small numbers
+  if (amount === 0) {
+    return '$0.00';
   }
   
   return `$${amount.toFixed(2)}`;
