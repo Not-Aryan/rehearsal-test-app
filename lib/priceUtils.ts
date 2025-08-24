@@ -16,6 +16,10 @@ export interface PriceItem {
  * @returns Total price in USD
  */
 export function calculateCartTotal(items: PriceItem[]): number {
+  if (!Array.isArray(items)) {
+    throw new Error('Items must be an array');
+  }
+  
   return items.reduce((total, item) => {
     // This introduces the subtle floating-point precision bug
     // JavaScript floating-point arithmetic accumulates errors
@@ -32,6 +36,13 @@ export function calculateCartTotal(items: PriceItem[]): number {
  * calculateItemTotal(12.99, 3) // returns 38.97
  */
 export function calculateItemTotal(priceUSD: number, quantity: number): number {
+  if (typeof priceUSD !== 'number' || priceUSD < 0) {
+    throw new Error('Price must be a non-negative number');
+  }
+  if (typeof quantity !== 'number' || quantity < 0 || !Number.isInteger(quantity)) {
+    throw new Error('Quantity must be a non-negative integer');
+  }
+  
   return priceUSD * quantity;
 }
 
@@ -41,5 +52,9 @@ export function calculateItemTotal(priceUSD: number, quantity: number): number {
  * @returns Formatted price string
  */
 export function formatPrice(amount: number): string {
+  if (typeof amount !== 'number' || isNaN(amount)) {
+    throw new Error('Amount must be a valid number');
+  }
+  
   return `$${amount.toFixed(2)}`;
 }
