@@ -1,15 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
 
-const ORDERS_CSV = path.join(process.cwd(), "public", "data", "orders.csv");
-const CSV_HEADER =
-  "orderId,name,streetAddress,city,state,zipcode,totalAmount,timestamp,itemsJson\n";
-
-function append(row: string) {
-  if (!fs.existsSync(ORDERS_CSV)) fs.writeFileSync(ORDERS_CSV, CSV_HEADER);
-  fs.appendFileSync(ORDERS_CSV, row);
-}
+// Store orders in memory for demo purposes
+// In production, use a database like PostgreSQL, MongoDB, etc.
+const orders: any[] = [];
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
@@ -40,23 +33,21 @@ export async function POST(req: NextRequest) {
     .toISOString()
     .split("T")[0];
 
-  /* very-naïve CSV escaping */
-  const safe = (v: string | number) =>
-    String(v).replace(/"/g, '""').replace(/,/g, " ");
-
-  append(
-    [
-      orderId,
-      safe(name),
-      safe(streetAddress),
-      safe(city),
-      safe(state),
-      safe(zipcode),
-      totalAmount,
-      timestamp,
-      `"${safe(JSON.stringify(items))}"`,
-    ].join(",") + "\n"
-  );
+  // Store order in memory instead of writing to file system
+  // This will persist for the lifetime of the serverless function instance
+  orders.push({
+    orderId,
+    name,
+    streetAddress,
+    city,
+    state,
+    zipcode,
+    totalAmount,
+    timestamp,
+    items,
+  });
+  
+  console.log(`Order ${orderId} stored in memory. Total orders: ${orders.length}`);
 
   return NextResponse.json({
     orderId,
