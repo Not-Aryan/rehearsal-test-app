@@ -15,6 +15,7 @@ export interface PriceItem {
  * Calculate the total price for a collection of items
  * @param items Array of items with price and quantity
  * @returns Total price in USD
+ * @throws {Error} If items is not an array
  */
 export function calculateCartTotal(items: PriceItem[]): number {
   if (!Array.isArray(items)) {
