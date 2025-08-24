@@ -25,9 +25,11 @@ export function calculateCartTotal(items: PriceItem[]): number {
 
 /**
  * Calculate the total for a single item (price * quantity)
- * @param priceUSD Unit price in USD
- * @param quantity Number of items
- * @returns Total price for the item
+ * @param priceUSD Unit price in USD (should be a positive number)
+ * @param quantity Number of items (should be a positive integer)
+ * @returns Total price for the item in USD
+ * @example
+ * calculateItemTotal(12.99, 3) // returns 38.97
  */
 export function calculateItemTotal(priceUSD: number, quantity: number): number {
   return priceUSD * quantity;
