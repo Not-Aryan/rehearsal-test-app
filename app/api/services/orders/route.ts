@@ -2,7 +2,23 @@ import { NextRequest, NextResponse } from "next/server";
 
 // Store orders in memory for demo purposes
 // In production, use a database like PostgreSQL, MongoDB, etc.
-const orders: any[] = [];
+interface Order {
+  orderId: string;
+  name: string;
+  streetAddress: string;
+  city: string;
+  state: string;
+  zipcode: string;
+  totalAmount: number;
+  timestamp: number;
+  items: Array<{
+    id: number;
+    name: string;
+    price: number;
+    quantity: number;
+  }>;
+}
+const orders: Order[] = [];
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
