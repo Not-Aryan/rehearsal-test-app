@@ -59,6 +59,7 @@ export function calculateItemTotal(priceUSD: number, quantity: number): number {
  * Format price for display with proper currency formatting
  * @param amount Price amount in USD
  * @returns Formatted price string
+ * @throws {Error} If amount is not a valid number
  */
 export function formatPrice(amount: number): string {
   if (typeof amount !== 'number' || isNaN(amount)) {
