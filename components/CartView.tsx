@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import clsx from "clsx";
 import { QtSelect } from "@/components/ui/qt-select";
 import { Trash } from "lucide-react";
+import { calculateCartTotal, calculateItemTotal } from "@/lib/priceUtils";
 
 interface ItemData {
   id: number;
@@ -172,9 +173,11 @@ export default function CartView() {
     else setLoading(false);
   }, [cartItems]);
 
-  const total = cartItems.reduce(
-    (sum, it) => sum + (productData[it.id]?.priceUSD || 0) * it.quantity,
-    0
+  const total = calculateCartTotal(
+    cartItems.map((it) => ({
+      priceUSD: productData[it.id]?.priceUSD || 0,
+      quantity: it.quantity,
+    }))
   );
 
   const handleCheckout = async (addr: {
@@ -255,7 +258,10 @@ export default function CartView() {
               cartItems.map(({ id, quantity }) => {
                 const product = productData[id];
                 if (!product) return null;
-                const itemTotal = (product.priceUSD || 0) * quantity;
+                const itemTotal = calculateItemTotal(
+                  product.priceUSD || 0,
+                  quantity
+                );
                 return (
                   <div
                     key={id}
