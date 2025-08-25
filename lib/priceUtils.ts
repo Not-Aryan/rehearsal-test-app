@@ -49,7 +49,7 @@ export function calculateItemTotal(priceUSD: number, quantity: number): number {
     throw new Error('Price must be a non-negative number');  // Validate price input
   }
   if (typeof quantity !== 'number' || quantity < 0 || !Number.isInteger(quantity)) {
-    throw new Error('Quantity must be a non-negative integer');
+    throw new Error('Quantity must be a non-negative integer');  // Validate quantity input
   }
   
   return priceUSD * quantity;
