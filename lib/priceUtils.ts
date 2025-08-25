@@ -68,7 +68,7 @@ export function formatPrice(amount: number): string {
   
   // Handle edge cases for very large or small numbers
   if (amount === 0) {
-    return '$0.00';
+    return '$0.00';  // Special case for zero amount
   }
   
   return `$${amount.toFixed(2)}`;
