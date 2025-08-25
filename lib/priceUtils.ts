@@ -24,7 +24,7 @@ export function calculateCartTotal(items: PriceItem[]): number {
   
   // Handle empty cart case for performance
   if (items.length === 0) {
-    return 0;
+    return 0;  // Early return for empty cart
   }
   
   return items.reduce((total, item) => {
