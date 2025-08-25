@@ -46,7 +46,7 @@ export function calculateCartTotal(items: PriceItem[]): number {
  */
 export function calculateItemTotal(priceUSD: number, quantity: number): number {
   if (typeof priceUSD !== 'number' || priceUSD < 0) {
-    throw new Error('Price must be a non-negative number');
+    throw new Error('Price must be a non-negative number');  // Validate price input
   }
   if (typeof quantity !== 'number' || quantity < 0 || !Number.isInteger(quantity)) {
     throw new Error('Quantity must be a non-negative integer');
