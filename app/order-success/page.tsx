@@ -1,9 +1,10 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import OrderSuccess from "@/components/OrderSuccess";
 
-export default function OrderSuccessPage() {
+function OrderSuccessContent() {
   const searchParams = useSearchParams();
   const orderId = searchParams.get("orderId") ?? "";
   const arrivalDate = searchParams.get("arrivalDate") ?? "";
@@ -18,5 +19,13 @@ export default function OrderSuccessPage() {
         <OrderSuccess orderId={orderId} arrivalDate={arrivalDate} />
       </main>
     </div>
+  );
+}
+
+export default function OrderSuccessPage() {
+  return (
+    <Suspense fallback={<div className="flex justify-center items-center min-h-screen">Loading...</div>}>
+      <OrderSuccessContent />
+    </Suspense>
   );
 }
