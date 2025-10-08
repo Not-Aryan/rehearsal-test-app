@@ -48,3 +48,6 @@ Verifying the staging URL fix is working correctly.
 
 ## Test Run 3 - 19:09:05
 Testing Modal function call fix (.remote instead of .spawn)
+
+## Test Run 4 - 19:13:49
+Testing Modal function signature fix (**kwargs pattern)
