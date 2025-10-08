@@ -190,7 +190,14 @@ export default function CartView() {
       return;
     }
 
-    const itemsForOrder = cartItems.map(({ id, quantity }) => ({
+    // BUG: Clearing cart BEFORE creating the order
+    clearCart();
+    
+    // Force getting the current (now empty) state from the store
+    const currentCartItems = useCartStore.getState().items;
+    
+    // This will now be empty array since cart was cleared!
+    const itemsForOrder = currentCartItems.map(({ id, quantity }) => ({
       id,
       quantity,
       productDisplayName: productData[id]?.productDisplayName || "Unknown",
@@ -199,19 +206,26 @@ export default function CartView() {
     }));
 
     try {
+      // BUG: Total recalculated after cart is cleared, so it's $0
+      const buggyTotal = itemsForOrder.reduce(
+        (sum, item) => sum + (item.priceUSD || 0) * item.quantity,
+        0
+      );
+      
       const res = await checkoutOrder({
         ...addr,
         items: itemsForOrder,
-        totalAmount: total,
+        totalAmount: buggyTotal, // Will be $0!
         timestamp: Date.now(),
       });
 
       if (res.status === "success") {
         // Save the order locally, including shipping details
+        // BUG: This saves the empty items array and $0 total
         addOrder({
           orderId: res.orderId,
-          items: itemsForOrder,
-          totalAmount: total,
+          items: itemsForOrder,  // Empty array!
+          totalAmount: buggyTotal,  // $0!
           timestamp: Date.now(),
           name: addr.name,
           streetAddress: addr.streetAddress,
@@ -220,8 +234,8 @@ export default function CartView() {
           zipcode: addr.zipcode,
         });
 
-        // Clear the cart
-        clearCart();
+        // Cart already cleared above (BUG)
+        // clearCart();
 
         // Navigate straight to the success page
         router.push(
