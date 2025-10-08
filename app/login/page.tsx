@@ -24,8 +24,12 @@ function LoginForm() {
       setToken(token);
       setErrorMessage(""); // Clear error message on successful login
       router.push(nextPath);
-    } catch {
-      setErrorMessage("Invalid username or password");
+    } catch (err) {
+      const message =
+        err instanceof Error && err.message
+          ? err.message
+          : "Invalid username or password";
+      setErrorMessage(message);
     }
   };
 
@@ -42,13 +46,19 @@ function LoginForm() {
               type="text"
               placeholder="Username"
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => {
+                if (errorMessage) setErrorMessage("");
+                setUsername(e.target.value);
+              }}
             />
             <Input
               type="password"
               placeholder="Password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                if (errorMessage) setErrorMessage("");
+                setPassword(e.target.value);
+              }}
             />
             <Button type="submit" className="w-full">
               Login
