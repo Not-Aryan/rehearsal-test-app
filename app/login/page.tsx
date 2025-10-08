@@ -22,6 +22,7 @@ function LoginForm() {
     try {
       const token = await login(username, password);
       setToken(token);
+      setErrorMessage(""); // Clear error message on successful login
       router.push(nextPath);
     } catch {
       setErrorMessage("Invalid username or password");
