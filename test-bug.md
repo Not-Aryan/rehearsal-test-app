@@ -69,3 +69,6 @@ Testing ONKERNEL_API_KEY fix and .remote(payload) call pattern
 
 ## Test Run 10 - 20:23:31
 Testing with ONKERNEL_API_KEY fix deployed
+
+## Test Run 11 - 20:36:38  
+Testing with Modal function signature fix deployed
