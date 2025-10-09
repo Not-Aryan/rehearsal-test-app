@@ -72,3 +72,6 @@ Testing with ONKERNEL_API_KEY fix deployed
 
 ## Test Run 11 - 20:36:38  
 Testing with Modal function signature fix deployed
+
+## Test Run 12 - 20:41:54
+Testing with new localtunnel URL: https://honest-monkeys-float.loca.lt
