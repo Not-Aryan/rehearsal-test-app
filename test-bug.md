@@ -78,3 +78,6 @@ Testing with new localtunnel URL: https://honest-monkeys-float.loca.lt
 
 ## Test Run 13 - 20:47:19
 Testing with final Modal signature fix and new localtunnel
+
+## Test Run 14 - 21:44:43
+Testing with Vercel Deployment Protection bypass headers configured
