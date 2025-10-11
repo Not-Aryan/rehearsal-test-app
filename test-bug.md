@@ -105,3 +105,6 @@ Testing after PR analyzer redeployment with updated secrets
 
 ## Test Run 19 - 17:27:15
 Testing with enhanced logging to trace bypass secret flow
+
+## Test Run 20 - 18:44:37
+Testing after discovering OnKernel extra_headers limitation
