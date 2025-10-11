@@ -99,3 +99,6 @@ This should be the complete working flow.
 
 ## Test Run 17 - 16:05:36
 Testing again after all infrastructure deployed
+
+## Test Run 18 - 16:07:54
+Testing after PR analyzer redeployment with updated secrets
