@@ -120,3 +120,6 @@ Testing with CDP cookie injection approach
 
 ## Test Run 24 - 14:46:25
 Testing with Playwright storage state for cookie persistence
+
+## Test Run 25 - 15:05:46
+Testing Steel sessionContext approach for Vercel bypass
