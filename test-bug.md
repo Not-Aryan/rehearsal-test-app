@@ -114,3 +114,6 @@ Testing after test executor changes
 
 ## Test Run 22 - 14:31:36
 Testing with cookies-based Vercel bypass approach
+
+## Test Run 23 - 14:38:11
+Testing with CDP cookie injection approach
