@@ -111,3 +111,6 @@ Testing after discovering OnKernel extra_headers limitation
 
 ## Test Run 21 - 14:25:21
 Testing after test executor changes
+
+## Test Run 22 - 14:31:36
+Testing with cookies-based Vercel bypass approach
