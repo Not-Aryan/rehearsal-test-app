@@ -117,3 +117,6 @@ Testing with cookies-based Vercel bypass approach
 
 ## Test Run 23 - 14:38:11
 Testing with CDP cookie injection approach
+
+## Test Run 24 - 14:46:25
+Testing with Playwright storage state for cookie persistence
