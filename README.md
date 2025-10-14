@@ -43,3 +43,5 @@ The dataset used in this demo is courtesy of the Fashion Product Images dataset 
 # Debug replay format - 1760406314
 
 Testing OnKernel Profiles - FINAL fix with delete_by_id - timestamp: 1760415311
+
+# Test credential injection - Enhanced PR analyzer with QA credentials - timestamp: 1760423220
