@@ -190,7 +190,7 @@ export default function CartView() {
       return;
     }
 
-    // Clear cart immediately to provide instant visual feedback
+    // Clear cart early for better perceived performance
     clearCart();
 
     // Get current cart state from store for order processing
