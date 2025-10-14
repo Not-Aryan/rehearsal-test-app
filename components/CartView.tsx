@@ -190,12 +190,8 @@ export default function CartView() {
       return;
     }
 
-    // Clear cart early for better perceived performance
-    clearCart();
-
-    // Get current cart state from store for order processing
-    const currentCartItems = useCartStore.getState().items;
-    const itemsForOrder = currentCartItems.map(({ id, quantity }) => ({
+    // Capture cart items before processing
+    const itemsForOrder = cartItems.map(({ id, quantity }) => ({
       id,
       quantity,
       productDisplayName: productData[id]?.productDisplayName || "Unknown",
@@ -204,16 +200,10 @@ export default function CartView() {
     }));
 
     try {
-      // Recalculate total from items array for consistency
-      const orderTotal = itemsForOrder.reduce(
-        (sum, item) => sum + (item.priceUSD || 0) * item.quantity,
-        0
-      );
-
       const res = await checkoutOrder({
         ...addr,
         items: itemsForOrder,
-        totalAmount: orderTotal,
+        totalAmount: total,
         timestamp: Date.now(),
       });
 
@@ -222,7 +212,7 @@ export default function CartView() {
         addOrder({
           orderId: res.orderId,
           items: itemsForOrder,
-          totalAmount: orderTotal,
+          totalAmount: total,
           timestamp: Date.now(),
           name: addr.name,
           streetAddress: addr.streetAddress,
@@ -230,6 +220,9 @@ export default function CartView() {
           state: addr.state,
           zipcode: addr.zipcode,
         });
+
+        // Clear cart after successful order
+        clearCart();
 
         // Navigate straight to the success page
         router.push(
