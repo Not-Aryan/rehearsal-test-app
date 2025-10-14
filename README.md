@@ -42,4 +42,4 @@ The dataset used in this demo is courtesy of the Fashion Product Images dataset 
 # Testing replay upload fix - 1760405423
 # Debug replay format - 1760406314
 
-Testing OnKernel Profiles - corrected SDK delete method - timestamp: 1760414817
+Testing OnKernel Profiles - FINAL fix with delete_by_id - timestamp: 1760415311
