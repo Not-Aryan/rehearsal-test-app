@@ -190,6 +190,7 @@ export default function CartView() {
       return;
     }
 
+    // Capture cart items before processing
     const itemsForOrder = cartItems.map(({ id, quantity }) => ({
       id,
       quantity,
@@ -220,7 +221,7 @@ export default function CartView() {
           zipcode: addr.zipcode,
         });
 
-        // Clear the cart
+        // Clear cart after successful order
         clearCart();
 
         // Navigate straight to the success page
