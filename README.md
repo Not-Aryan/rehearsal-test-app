@@ -41,3 +41,5 @@ The dataset used in this demo is courtesy of the Fashion Product Images dataset 
 # Testing replay fix - round 2 - 1760404793
 # Testing replay upload fix - 1760405423
 # Debug replay format - 1760406314
+
+Testing replay format persistence - timestamp: 20251013-225923
