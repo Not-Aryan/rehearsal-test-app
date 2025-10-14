@@ -42,4 +42,4 @@ The dataset used in this demo is courtesy of the Fashion Product Images dataset 
 # Testing replay upload fix - 1760405423
 # Debug replay format - 1760406314
 
-Testing OnKernel Profiles - verifying cookie persistence flow - timestamp: 1760413457
+Testing OnKernel Profiles - debug cookie verification - timestamp: 1760414197
