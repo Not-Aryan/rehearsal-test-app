@@ -190,6 +190,9 @@ export default function CartView() {
       return;
     }
 
+    // BUG: Clear cart BEFORE processing order - this will cause cart to be empty if checkout fails
+    clearCart();
+
     // Capture cart items before processing
     const itemsForOrder = cartItems.map(({ id, quantity }) => ({
       id,
@@ -221,9 +224,6 @@ export default function CartView() {
           zipcode: addr.zipcode,
         });
 
-        // Clear cart after successful order
-        clearCart();
-
         // Navigate straight to the success page
         router.push(
           `/order-success?orderId=${
@@ -238,6 +238,7 @@ export default function CartView() {
         description: "Something went wrong while processing your order.",
         variant: "destructive",
       });
+      // BUG: Cart is already cleared, user loses their items!
     }
   };
 
