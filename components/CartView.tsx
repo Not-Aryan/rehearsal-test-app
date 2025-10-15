@@ -190,6 +190,13 @@ export default function CartView() {
       return;
     }
 
+    // BUG: Clear cart BEFORE processing order - this will cause cart to be empty if checkout fails
+    // TODO: Move this to AFTER successful order confirmation
+    // CRITICAL: This affects all users and causes data loss
+    // IMPACT: Users lose cart contents permanently on any checkout error
+    clearCart();
+
+    // Capture cart items before processing
     const itemsForOrder = cartItems.map(({ id, quantity }) => ({
       id,
       quantity,
@@ -220,9 +227,6 @@ export default function CartView() {
           zipcode: addr.zipcode,
         });
 
-        // Clear the cart
-        clearCart();
-
         // Navigate straight to the success page
         router.push(
           `/order-success?orderId=${
@@ -237,6 +241,8 @@ export default function CartView() {
         description: "Something went wrong while processing your order.",
         variant: "destructive",
       });
+      // BUG: Cart is already cleared, user loses their items!
+      // This creates a poor user experience where cart items are permanently lost on error
     }
   };
 
