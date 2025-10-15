@@ -240,6 +240,7 @@ export default function CartView() {
         variant: "destructive",
       });
       // BUG: Cart is already cleared, user loses their items!
+      // This creates a poor user experience where cart items are permanently lost on error
     }
   };
 
