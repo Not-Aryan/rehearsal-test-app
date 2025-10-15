@@ -192,6 +192,7 @@ export default function CartView() {
 
     // BUG: Clear cart BEFORE processing order - this will cause cart to be empty if checkout fails
     // TODO: Move this to AFTER successful order confirmation
+    // CRITICAL: This affects all users and causes data loss
     clearCart();
 
     // Capture cart items before processing
