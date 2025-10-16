@@ -94,7 +94,7 @@ export default function OrderSuccess({
                     </div>
                     {/* Total price for this item */}
                     <div className="text-base font-semibold w-20 text-right">
-                      ${(item.priceUSD * item.quantity).toFixed(2)}
+                      ${((item.priceUSD ?? 0) * item.quantity).toFixed(2)}
                     </div>
                   </div>
                 ))
