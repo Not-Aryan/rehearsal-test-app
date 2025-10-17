@@ -284,7 +284,7 @@ export default function CartView() {
                       <Trash
                         className="w-6 h-6 cursor-pointer text-gray-500 hover:text-gray-700"
                         onClick={() => {
-                          useCartStore.getState().removeItem(id);
+                          useCartStore.getState().clear();
                         }}
                       />
                     </div>
