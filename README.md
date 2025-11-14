@@ -25,3 +25,18 @@ A demo e‑commerce site used as the target for the automated testing agent. It 
 ## Dataset
 
 The dataset used in this demo is courtesy of the Fashion Product Images dataset on Kaggle.
+# Test change for PR webhook
+# Triggering smoke tests with correct org
+# Testing with URL replacement fix
+# Fix: Add .not.toBeVisible() conversion
+# Test CDP-based Playwright execution
+# Fix: Use CDP URL from create response
+# Add comprehensive logging
+# Show full logs
+# Trigger full logging test
+# Fix: Use project directory for test files
+# Test final CDP implementation
+# Verify clean implementation
+# Test check run status updates
+# Trigger check run update verification
+# Fix variable name conflict
