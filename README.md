@@ -36,3 +36,4 @@ The dataset used in this demo is courtesy of the Fashion Product Images dataset 
 # Trigger full logging test
 # Fix: Use project directory for test files
 # Test final CDP implementation
+# Verify clean implementation
