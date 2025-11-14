@@ -34,3 +34,4 @@ The dataset used in this demo is courtesy of the Fashion Product Images dataset 
 # Add comprehensive logging
 # Show full logs
 # Trigger full logging test
+# Fix: Use project directory for test files
