@@ -33,3 +33,4 @@ The dataset used in this demo is courtesy of the Fashion Product Images dataset 
 # Fix: Use CDP URL from create response
 # Add comprehensive logging
 # Show full logs
+# Trigger full logging test
