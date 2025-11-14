@@ -29,3 +29,4 @@ The dataset used in this demo is courtesy of the Fashion Product Images dataset 
 # Triggering smoke tests with correct org
 # Testing with URL replacement fix
 # Fix: Add .not.toBeVisible() conversion
+# Test CDP-based Playwright execution
