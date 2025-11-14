@@ -32,3 +32,4 @@ The dataset used in this demo is courtesy of the Fashion Product Images dataset 
 # Test CDP-based Playwright execution
 # Fix: Use CDP URL from create response
 # Add comprehensive logging
+# Show full logs
