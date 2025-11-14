@@ -31,3 +31,4 @@ The dataset used in this demo is courtesy of the Fashion Product Images dataset 
 # Fix: Add .not.toBeVisible() conversion
 # Test CDP-based Playwright execution
 # Fix: Use CDP URL from create response
+# Add comprehensive logging
