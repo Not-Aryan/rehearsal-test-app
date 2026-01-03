@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import { SessionRecordingSDK } from "@/components/SessionRecordingSDK";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,9 +27,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased p-4`}
       >
+        <SessionRecordingSDK />
         <Navbar />
         {children}
         <Footer />
@@ -36,3 +42,4 @@ export default function RootLayout({
     </html>
   );
 }
+// trigger vercel 1767484617
