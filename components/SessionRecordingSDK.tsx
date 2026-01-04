@@ -3,16 +3,19 @@
 import { useEffect } from 'react'
 import Script from 'next/script'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+declare const window: Window & { rrweb?: unknown; __rrweb?: unknown; SessionSDK?: { init: (key: string, opts: Record<string, unknown>) => void } }
+
 export function SessionRecordingSDK() {
   useEffect(() => {
     console.log('[TEST APP] Component mounted')
 
     // Check if rrweb is already loaded (from beforeInteractive script)
-    const rrwebGlobal = (window as any).rrweb
+    const rrwebGlobal = window.rrweb
     if (rrwebGlobal) {
       console.log('[TEST APP] rrweb already loaded, setting __rrweb')
-      ;(window as any).__rrweb = rrwebGlobal
-      console.log('[TEST APP] __rrweb.record type:', typeof (window as any).__rrweb?.record)
+      window.__rrweb = rrwebGlobal
+      console.log('[TEST APP] __rrweb.record type:', typeof window.__rrweb)
     } else {
       console.log('[TEST APP] rrweb not yet loaded')
     }
@@ -22,15 +25,15 @@ export function SessionRecordingSDK() {
     console.log('[TEST APP] SessionSDK script loaded')
 
     // First ensure __rrweb is set
-    const rrwebGlobal = (window as any).rrweb
-    if (rrwebGlobal && !(window as any).__rrweb) {
-      ;(window as any).__rrweb = rrwebGlobal
+    const rrwebGlobal = window.rrweb
+    if (rrwebGlobal && !window.__rrweb) {
+      window.__rrweb = rrwebGlobal
       console.log('[TEST APP] Set __rrweb from SDK onLoad')
     }
 
     // Wait a moment for IIFE to execute
     setTimeout(() => {
-      const sdk = (window as any).SessionSDK
+      const sdk = window.SessionSDK
       if (sdk) {
         sdk.init('pk_test_cm189whkt5p', {
           apiHost: 'http://localhost:3000',
@@ -47,24 +50,23 @@ export function SessionRecordingSDK() {
 
   return (
     <>
-      {/* Load rrweb first with beforeInteractive so it's available early */}
+      {/* Load rrweb first */}
       <Script
         src="/rrweb.min.js"
-        strategy="beforeInteractive"
+        strategy="afterInteractive"
       />
-      {/* Inline script to immediately set __rrweb after rrweb loads */}
+      {/* Inline script to set __rrweb after rrweb loads */}
       <Script
         id="rrweb-setup"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            if (typeof window.rrweb !== 'undefined') {
-              window.__rrweb = window.rrweb;
-              console.log('[TEST APP] __rrweb set via inline script');
-            }
-          `
-        }}
-      />
+        strategy="afterInteractive"
+      >
+        {`
+          if (typeof window.rrweb !== 'undefined') {
+            window.__rrweb = window.rrweb;
+            console.log('[TEST APP] __rrweb set via inline script');
+          }
+        `}
+      </Script>
       <Script
         src="http://localhost:8080/session-sdk.js"
         strategy="afterInteractive"
