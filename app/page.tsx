@@ -62,6 +62,13 @@ export default function HomePage() {
         height={260}
       />
 
+      {/* Welcome Banner - NEW */}
+      <div className="bg-stone-100 py-4 px-6 text-center">
+        <p className="text-stone-700 font-medium">
+          Welcome to our store! Free shipping on orders over $100.
+        </p>
+      </div>
+
       {/* Just In Section */}
       <section className="py-12 px-6 max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-6">
