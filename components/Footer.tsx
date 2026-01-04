@@ -121,4 +121,5 @@ export default function Footer() {
     </footer>
   );
 }
-<!-- Debug test -->
+
+// Debug test comment for E2B payload logging
