@@ -99,7 +99,7 @@ export default function Footer() {
         <div className="border-t border-stone-200 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-xs text-stone-600 mb-4 md:mb-0">
-              © 2025 THE STORE. All rights reserved.
+              © 2026 THE STORE. All rights reserved.
             </p>
             <div className="flex space-x-6">
               <a href="#" className="text-stone-600 hover:text-black">
