@@ -62,10 +62,10 @@ export default function HomePage() {
         height={260}
       />
 
-      {/* Just In Section */}
+      {/* Fresh Picks Section */}
       <section className="py-12 px-6 max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-3xl font-semibold">Just In</h2>
+          <h2 className="text-3xl font-semibold">Fresh Picks</h2>
           <Link
             href="/shop/just-in"
             className="text-stone-700 flex items-center group"
