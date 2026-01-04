@@ -114,6 +114,9 @@ export default function Footer() {
               <a href="#" className="text-stone-600 hover:text-black">
                 Pinterest
               </a>
+              <a href="#" className="text-stone-600 hover:text-black">
+                YouTube
+              </a>
             </div>
           </div>
         </div>
