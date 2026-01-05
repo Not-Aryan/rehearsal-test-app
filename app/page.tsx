@@ -65,7 +65,7 @@ export default function HomePage() {
       {/* Just In Section */}
       <section className="py-12 px-6 max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-3xl font-semibold">Just In</h2>
+          <h2 className="text-3xl font-semibold">New Arrivals</h2>
           <Link
             href="/shop/just-in"
             className="text-stone-700 flex items-center group"
