@@ -33,6 +33,8 @@ export default function HomePage() {
   }, [fetchStyles]);
   const justIn = data.slice(0, 4);
 
+  const trending = data.slice(4, 8);
+
   const callouts = [
     {
       title: "Clothes",
@@ -79,6 +81,29 @@ export default function HomePage() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {justIn.map((item) => (
+              <StyleCard key={item.id} item={item} />
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* Trending Section */}
+      <section className="py-12 px-6 max-w-7xl mx-auto bg-stone-50">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-3xl font-semibold">Trending Now</h2>
+          <Link
+            href="/shop"
+            className="text-stone-700 flex items-center group"
+          >
+            Shop all
+            <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-300" />
+          </Link>
+        </div>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            {trending.map((item) => (
               <StyleCard key={item.id} item={item} />
             ))}
           </div>
