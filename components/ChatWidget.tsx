@@ -1,11 +1,16 @@
 "use client";
 
-import { ShowtimeChat } from "@showtime/chat";
+import dynamic from "next/dynamic";
+
+const ShowtimeChat = dynamic(
+  () => import("@showtime/chat").then((mod) => mod.ShowtimeChat),
+  { ssr: false }
+);
 
 export function ChatWidget() {
   return (
     <ShowtimeChat
-      apiKey="your-api-key"
+      apiKey="test_api_key_for_development"
       baseUrl="https://showtime-dev.ngrok.io"
       userName="User"
       appName="THE STORE"
